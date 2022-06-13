@@ -1,0 +1,92 @@
+/* Initialize */
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  /* 아이템 세로로 줄 세우기 */
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  color: white;
+
+  /* UI_Gradient.com */
+  background: linear-gradient(20deg, #78ffd6, #a8ff78);
+  padding: 1rem;
+
+  /* 가운데로 위치*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container {
+  width: 100%;
+  height: 30px;
+  /* 위 아래로 꽉차게 stretch 된다. */
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.input-text {
+  width: 90%;
+  padding: 0.3rem;
+  border: none;
+}
+.add-button {
+  width: 10%;
+  background: #ea76a5;
+  color: #fff;
+  /* 버튼 클릭 시 사라지지 않는 테두리를 없을 때 */
+  border: none;
+  outline: none;
+}
+.add-button:hover {
+  cursor: pointer;
+  background-color: #ff0066;
+}
+
+.list li {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 1em;
+  align-items: center;
+}
+.like {
+  flex: 1;
+}
+.item {
+  flex: 8;
+}
+.manage {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.like i {
+  color: salmon;
+}
+.check {
+  color: #38ef7d;
+}
+.clear {
+  color: salmon;
+}
+
+/* .list li 에 넣을 토글 클래스 설정 */
+.done .item {
+  text-decoration: line-through;
+}
+.done .check {
+  visibility: hidden;
+}

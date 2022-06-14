@@ -6,7 +6,10 @@ const inputText = $('.input-text')
 const addButton = $('.add-button')
 const list = $('.list')
 
-addButton.addEventListener('click', e => {
+function addItem() {
+  // 인풋 텅비면 종료
+  if (!inputText.value.trim()) return
+
   // like
   const like = document.createElement('span')
   const likeIcon = document.createElement('i')
@@ -39,6 +42,8 @@ addButton.addEventListener('click', e => {
   li.appendChild(item)
   li.appendChild(manage)
   list.appendChild(li)
+  inputText.value = ''
+  inputText.focus()
 
   // 편한 방법
   // const li = `<li>
@@ -52,22 +57,44 @@ addButton.addEventListener('click', e => {
   //   </span>
   //   </li>`
   // list.innerHTML += li
+}
+// Event - input
+addButton.addEventListener('click', e => {
+  addItem()
 })
 
-// Like 버튼 Click 관련
+inputText.addEventListener('keypress', e => {
+  if (e.key === 'Enter') {
+    addItem()
+  }
+})
 
-// 이러면 기존 2개의 li 태그에만 이벤트 리스너가 걸림.
-// 추가되는 li 태그에는 이벤트가 걸리지 않는 문제가 발생.
-// const likeButtons = $$('.like')
-// likeButtons.forEach(like => {
-//   like.addEventListener('click', () => {
-//     console.log('clicked')
-//   })
-// })
-
-// Like 버튼 Toggle
+// Event
 list.addEventListener('click', e => {
-  if (e.target.innerText === 'favorite_border') {
+  console.log(e)
+  console.log(e.target)
+  // Like Btn toggle
+  if (
+    e.target.className === 'material-icons favorite' &&
+    e.target.innerText === 'favorite'
+  ) {
+    e.target.innerText = 'favorite_border'
+  } else if (
+    e.target.className === 'material-icons favorite' &&
+    e.target.innerText === 'favorite_border'
+  ) {
     e.target.innerText = 'favorite'
-  } else e.target.innerText = 'favorite_border'
+  }
+  // Check Btn
+  if (e.target.classList.contains('check')) {
+    console.log(true)
+    e.target.parentNode.parentNode.classList.add('done')
+  }
+  // Delete Btn
+  if (e.target.classList.contains('clear')) {
+    // 방법 1
+    e.target.parentNode.parentNode.remove()
+    // 방법 2
+    // list.removeChild(e.target.parentNode.parentNode)
+  }
 })
